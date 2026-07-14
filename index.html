@@ -211,16 +211,23 @@
   /* 누르는 순간 파장 정지 */
   .item:active .chev::before,.item:active .chev::after{animation:none;opacity:0;}
 
-  /* 리스트 위 안내 */
+  /* 리스트 위 안내 — 눈에 띄어야 하므로 네이비 채움 */
   .tap-hint{
-    position:relative;z-index:2;
-    display:inline-flex;align-items:center;gap:6px;align-self:center;
-    margin-bottom:8px;padding:5px 12px;border-radius:100px;
-    background:#EDF2FB;border:1px solid #DAE3F1;
-    font-size:var(--fs-cap);font-weight:700;color:#3A5C97;
+    position:relative;z-index:3;
+    display:inline-flex;align-items:center;gap:7px;align-self:center;
+    margin-bottom:10px;padding:9px 18px;border-radius:100px;
+    background:linear-gradient(135deg,#2A5596 0%,#12305C 100%);
+    border:none;color:#fff;
+    font-size:17px;font-weight:800;letter-spacing:-0.03em;
+    box-shadow:0 4px 14px rgba(18,48,92,.3);
+    animation:hintPulse 2.2s ease-in-out infinite;
   }
-  .tap-hint .fin{animation:tapbob 1.8s ease-in-out infinite;}
-  @keyframes tapbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  @keyframes hintPulse{
+    0%,100%{transform:translateY(0) scale(1);   box-shadow:0 4px 14px rgba(18,48,92,.3);}
+    50%    {transform:translateY(-3px) scale(1.045);box-shadow:0 9px 24px rgba(18,48,92,.42);}
+  }
+  .tap-hint .fin{font-size:18px;animation:tapbob 1.4s ease-in-out infinite;}
+  @keyframes tapbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 
   /* 공통 확인사항 */
   .common{
@@ -424,7 +431,7 @@
       <h2 class="rise">여성질환 3종이<br><span style="color:#B85476;">열립니다.</span></h2>
       <p class="rise">모두 현행 <b>인수불가</b>였던 질환입니다.</p>
     </div>
-    <div class="tap-hint rise"><span class="fin">👆</span> 항목을 눌러 자세히 보기</div>
+    <div class="tap-hint rise"><span class="fin">👆</span> 클릭해서 세부내용 보기</div>
     <div class="list">
       <div class="item" data-key="breast">
         <div class="txt">
@@ -475,7 +482,7 @@
       <h2 class="rise">연조직 종양도<br><span style="color:#6255A8;">열립니다.</span></h2>
       <p class="rise">현행 <b>인수불가</b> → 입원 15일 이하 +<br>수술을 받았다면 인수 검토됩니다.</p>
     </div>
-    <div class="tap-hint rise"><span class="fin">👆</span> 항목을 눌러 자세히 보기</div>
+    <div class="tap-hint rise"><span class="fin">👆</span> 클릭해서 세부내용 보기</div>
     <div class="list">
       <div class="item" data-key="soft">
         <div class="txt">
@@ -508,7 +515,7 @@
       <h2 class="rise">망막·비문증도<br><span style="color:#2F6E96;">열립니다.</span></h2>
       <p class="rise">현행 <b>인수불가</b> → 입원 15일 이하 +<br>수술을 받았다면 인수 검토됩니다.</p>
     </div>
-    <div class="tap-hint rise"><span class="fin">👆</span> 항목을 눌러 자세히 보기</div>
+    <div class="tap-hint rise"><span class="fin">👆</span> 클릭해서 세부내용 보기</div>
     <div class="list">
       <div class="item" data-key="retina">
         <div class="txt">
@@ -547,7 +554,7 @@
       <h2 class="rise">시스템 거절에서<br><span style="color:#A96D2C;">선별 인수로.</span></h2>
       <p class="rise">단, 원인 질환에 따라 갈립니다.<br>이 코드라고 모두 인수되지 않습니다.</p>
     </div>
-    <div class="tap-hint rise"><span class="fin">👆</span> 항목을 눌러 자세히 보기</div>
+    <div class="tap-hint rise"><span class="fin">👆</span> 클릭해서 세부내용 보기</div>
     <div class="list">
       <div class="item" data-key="pain">
         <div class="txt">
@@ -595,7 +602,7 @@
       <h2 class="rise">어지럼증·간염도<br><span style="color:#357C5F;">열립니다.</span></h2>
       <p class="rise">현행 <b>인수불가</b> → 세 항목 모두<br><b>수술이 없어야</b> 인수 검토됩니다.</p>
     </div>
-    <div class="tap-hint rise"><span class="fin">👆</span> 항목을 눌러 자세히 보기</div>
+    <div class="tap-hint rise"><span class="fin">👆</span> 클릭해서 세부내용 보기</div>
     <div class="list">
       <div class="item" data-key="vest">
         <div class="txt">
