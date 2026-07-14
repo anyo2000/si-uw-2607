@@ -653,21 +653,21 @@ const DATA = {
       ['현재 보유 중인 종양이 없을 것','원문 : 보유중 종양 없는 경우 限'],
       ['3개월 내 추가검사 소견이 없을 것','원문 : 3개월내 추가검사 소견 無']
     ],
-    warn:'종양이 남아있거나 추가검사 소견이 있었던 경우는 <b>인수 불가</b>입니다.<br><br>인수되더라도 <b>유방 관련 담보</b>와 <span class="term" data-t="유갑자">유갑자 담보</span>는 <span class="term" data-t="담보제한">제한</span>됩니다.'
+    warn:'종양이 남아있거나 추가검사 소견이 있었던 경우는 <b>인수 불가</b>입니다.<br><br>인수되더라도 <b>유방 관련 담보</b>와 <span class="term" data-t="유갑생">유갑생 담보</span>는 <span class="term" data-t="담보제한">제한</span>됩니다.'
   },
   endo:{
     name:'자궁내막증', day:'15', chips:['수술 있음'],
     ba:['인수 불가','인수 검토 가능'],
     verdict:'입원이 <b>15일 이하</b>였고, <b>수술을 받은</b> 경우 인수 검토가 가능합니다.',
     conds:[['입원일수가 15일 이하일 것','원문 : 15일이하 입원'],['수술을 받았을 것','원문 : 수술 有']],
-    warn:'인수되더라도 <b>자궁내막증 담보</b>와 <span class="term" data-t="유갑자">유갑자 담보</span>는 <span class="term" data-t="담보제한">제한</span>됩니다.'
+    warn:'인수되더라도 <b>자궁내막증 담보</b>와 <span class="term" data-t="유갑생">유갑생 담보</span>는 <span class="term" data-t="담보제한">제한</span>됩니다.'
   },
   hyper:{
     name:'자궁내막증식증', day:'15', chips:['수술 있음'],
     ba:['인수 불가','인수 검토 가능'],
     verdict:'입원이 <b>15일 이하</b>였고, <b>수술을 받은</b> 경우 인수 검토가 가능합니다.',
     conds:[['입원일수가 15일 이하일 것','원문 : 15일이하 입원'],['수술을 받았을 것','원문 : 수술 有']],
-    warn:'인수되더라도 <b>자궁내막증 담보</b>와 <span class="term" data-t="유갑자">유갑자 담보</span>는 <span class="term" data-t="담보제한">제한</span>됩니다.'
+    warn:'인수되더라도 <b>자궁내막증 담보</b>와 <span class="term" data-t="유갑생">유갑생 담보</span>는 <span class="term" data-t="담보제한">제한</span>됩니다.'
   },
   soft:{
     name:'결합조직 및 연조직의 양성 신생물', day:'15', chips:['수술 있음'],
@@ -745,7 +745,7 @@ const BRANCH = `
   </div>`;
 
 const TERMS = {
-  '유갑자':'<b style="color:#fff;font-weight:700;">유방갑상선여성생식기질환통합치료비</b> 담보의 약칭입니다.',
+  '유갑생':'<b style="color:#fff;font-weight:700;">유방,갑상선,여성생식기질환통합치료비</b>의 공식 약칭입니다. (한도별 2천만·5천만·1억)<br>현장에서는 <b style="color:#fff;font-weight:700;">유갑자</b>라고도 부릅니다.',
   '담보제한':'계약은 인수하되, 해당 담보만 빼고 가입하는 것. 계약 자체가 거절되는 것은 아닙니다.'
 };
 
