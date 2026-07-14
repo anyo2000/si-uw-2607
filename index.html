@@ -124,7 +124,7 @@
     background:linear-gradient(140deg,#2A5596,#6A4FC4);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   }
-  .stat .l{font-size:var(--fs-cap);color:#7A7F8A;font-weight:600;}
+  .stat .l{font-size:var(--fs-cap);color:#7A7F8A;font-weight:600;line-height:1.4;}
 
   .scroll-cue{
     position:relative;z-index:2;
@@ -154,16 +154,16 @@
   .cat-head p{font-size:16px;line-height:1.55;color:var(--gray);font-weight:500;}
 
   /* ═══ 항목 카드 ═══ */
-  .list{position:relative;z-index:2;display:flex;flex-direction:column;gap:9px;text-align:left;}
+  .list{position:relative;z-index:2;display:flex;flex-direction:column;gap:8px;text-align:left;}
   .item{
     position:relative;background:var(--surface);border:1px solid #E8ECF3;
-    border-radius:20px;padding:16px 17px;cursor:pointer;
+    border-radius:20px;padding:14px 16px;cursor:pointer;
     display:flex;align-items:center;gap:12px;
     transition:transform .34s cubic-bezier(.32,.72,0,1);
   }
   .item:active{transform:scale(.972);}
   .item .txt{flex:1;min-width:0;}
-  .item .name{font-size:20px;font-weight:800;letter-spacing:-0.035em;margin-bottom:8px;line-height:1.3;}
+  .item .name{font-size:20px;font-weight:800;letter-spacing:-0.035em;margin-bottom:7px;line-height:1.28;}
   .item .tags{display:flex;gap:5px;flex-wrap:wrap;}
   .item .tag{
     font-size:var(--fs-cap);font-weight:700;
@@ -173,7 +173,7 @@
   .item .tag.no{background:#FFECF0;color:#B84A68;border-color:#F7D8E0;}
   .item .tag.hot{background:#FFF0E4;color:#B5641C;border-color:#F8DFC6;}
   .daybox{
-    flex:none;width:74px;padding:12px 6px;border-radius:18px;
+    flex:none;width:68px;padding:12px 4px;border-radius:17px;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     background:linear-gradient(145deg,#2A5596 0%,#12305C 100%);
     color:#fff;box-shadow:0 6px 18px rgba(18,48,92,.22);
@@ -183,14 +183,53 @@
   .daybox .u2{font-size:var(--fs-cap);font-weight:700;color:#A9C0E4;margin-top:5px;line-height:1;}
   .daybox.free{background:linear-gradient(145deg,#6B5FC0 0%,#3E3480 100%);box-shadow:0 6px 18px rgba(80,64,160,.22);}
 
+  /* ═══ 탭 유도 — 화살표 + 퍼지는 파장 ═══ */
+  .chev{
+    flex:none;position:relative;
+    width:30px;height:30px;border-radius:50%;
+    background:#fff;border:1px solid #DFE4EC;
+    display:grid;place-items:center;color:#2A5596;
+    box-shadow:0 2px 6px rgba(18,48,92,.08);
+  }
+  /* 파장 : 화살표에서 물결처럼 퍼져나감 */
+  .chev::before,.chev::after{
+    content:'';position:absolute;inset:0;border-radius:50%;
+    border:2px solid #2A5596;opacity:0;
+    animation:ripple 2.8s cubic-bezier(.22,.8,.28,1) infinite;
+  }
+  .chev::after{animation-delay:.7s;}
+  @keyframes ripple{
+    0%  {transform:scale(1);   opacity:.5;}
+    60% {transform:scale(1.85);opacity:0;}
+    100%{transform:scale(1.85);opacity:0;}
+  }
+  /* 카드마다 파장 시작 시점을 어긋나게 — 순서대로 번지는 느낌 */
+  .item:nth-child(2) .chev::before,.item:nth-child(2) .chev::after{animation-delay:.35s;}
+  .item:nth-child(2) .chev::after{animation-delay:1.05s;}
+  .item:nth-child(3) .chev::before,.item:nth-child(3) .chev::after{animation-delay:.7s;}
+  .item:nth-child(3) .chev::after{animation-delay:1.4s;}
+  /* 누르는 순간 파장 정지 */
+  .item:active .chev::before,.item:active .chev::after{animation:none;opacity:0;}
+
+  /* 리스트 위 안내 */
+  .tap-hint{
+    position:relative;z-index:2;
+    display:inline-flex;align-items:center;gap:6px;align-self:center;
+    margin-bottom:8px;padding:5px 12px;border-radius:100px;
+    background:#EDF2FB;border:1px solid #DAE3F1;
+    font-size:var(--fs-cap);font-weight:700;color:#3A5C97;
+  }
+  .tap-hint .fin{animation:tapbob 1.8s ease-in-out infinite;}
+  @keyframes tapbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
   /* 공통 확인사항 */
   .common{
     position:relative;z-index:2;margin-top:auto;
-    border-radius:20px;padding:15px 14px;
+    border-radius:20px;padding:13px 13px;
     background:linear-gradient(135deg,#FFFFFF 0%,#F5F7FB 100%);
     border:1px solid #E6EAF1;
   }
-  .common .h{font-size:var(--fs-cap);font-weight:700;color:#7A7F8A;margin-bottom:10px;}
+  .common .h{font-size:var(--fs-cap);font-weight:700;color:#7A7F8A;margin-bottom:8px;}
   .common .three{display:flex;gap:7px;}
   .common .c{flex:1;padding:10px 4px;border-radius:14px;background:#fff;border:1px solid #EBEEF4;}
   .common .c .ci{font-size:18px;margin-bottom:5px;line-height:1;}
@@ -360,12 +399,12 @@
     <div class="ghost ghost--hero">7.20</div>
     <div class="hero">
       <div class="eyebrow rise"><span class="live"></span>SI 경증질환 심사기준 변경</div>
-      <h1 class="rise">지금까지<br>안 되던 11개 질환,<br><span class="grad">이제 열립니다.</span></h1>
-      <div class="sub rise">모두 <b style="color:#3A4150;">현행 인수불가</b>였던 질환입니다.<br>7월 20일부터 인수 검토 대상이 됩니다.</div>
+      <h1 class="rise">가입이 어렵던<br>11개 질환<br><span class="grad">다시 확인하세요</span></h1>
+      <div class="sub rise">모두 <b style="color:#3A4150;">인수불가</b>였던 질환<br>인수 검토대상으로</div>
       <div class="hero-stats rise">
-        <div class="stat"><div class="n">11</div><div class="l">인수불가 → 검토</div></div>
-        <div class="stat"><div class="n">5</div><div class="l">질환 그룹</div></div>
-        <div class="stat"><div class="n">7.20</div><div class="l">시행일</div></div>
+        <div class="stat"><div class="n">11</div><div class="l">인수불가<br>→ 검토</div></div>
+        <div class="stat"><div class="n">5</div><div class="l">질환<br>그룹</div></div>
+        <div class="stat"><div class="n">7.20</div><div class="l">시행일<br>(월)</div></div>
       </div>
     </div>
     <div class="scroll-cue">
@@ -383,8 +422,9 @@
         <span class="ic">♀</span><span class="tx">여성질환</span>
       </div>
       <h2 class="rise">여성질환 3종이<br><span style="color:#B85476;">열립니다.</span></h2>
-      <p class="rise">모두 현행 <b>인수불가</b>였습니다.<br>유방 양성종양은 조건이 가장 까다롭습니다.</p>
+      <p class="rise">모두 현행 <b>인수불가</b>였던 질환입니다.</p>
     </div>
+    <div class="tap-hint rise"><span class="fin">👆</span> 항목을 눌러 자세히 보기</div>
     <div class="list">
       <div class="item" data-key="breast">
         <div class="txt">
@@ -392,10 +432,10 @@
           <div class="tags">
             <span class="tag yes">제거수술 완료</span>
             <span class="tag no">재발 없음</span>
-            <span class="tag no">잔존 종양 없음</span>
           </div>
         </div>
         <div class="daybox"><div class="u1">입원</div><div class="d">3</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="item" data-key="endo">
         <div class="txt">
@@ -403,6 +443,7 @@
           <div class="tags"><span class="tag yes">수술 있음</span></div>
         </div>
         <div class="daybox"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="item" data-key="hyper">
         <div class="txt">
@@ -410,6 +451,7 @@
           <div class="tags"><span class="tag yes">수술 있음</span></div>
         </div>
         <div class="daybox"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </div>
     <div class="common">
@@ -433,6 +475,7 @@
       <h2 class="rise">연조직 종양도<br><span style="color:#6255A8;">열립니다.</span></h2>
       <p class="rise">현행 <b>인수불가</b> → 입원 15일 이하 +<br>수술을 받았다면 인수 검토됩니다.</p>
     </div>
+    <div class="tap-hint rise"><span class="fin">👆</span> 항목을 눌러 자세히 보기</div>
     <div class="list">
       <div class="item" data-key="soft">
         <div class="txt">
@@ -440,6 +483,7 @@
           <div class="tags"><span class="tag yes">수술 있음</span></div>
         </div>
         <div class="daybox"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </div>
     <div class="common">
@@ -464,6 +508,7 @@
       <h2 class="rise">망막·비문증도<br><span style="color:#2F6E96;">열립니다.</span></h2>
       <p class="rise">현행 <b>인수불가</b> → 입원 15일 이하 +<br>수술을 받았다면 인수 검토됩니다.</p>
     </div>
+    <div class="tap-hint rise"><span class="fin">👆</span> 항목을 눌러 자세히 보기</div>
     <div class="list">
       <div class="item" data-key="retina">
         <div class="txt">
@@ -471,6 +516,7 @@
           <div class="tags"><span class="tag yes">수술 있음</span></div>
         </div>
         <div class="daybox"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="item" data-key="vitreous">
         <div class="txt">
@@ -478,6 +524,7 @@
           <div class="tags"><span class="tag yes">수술 있음</span></div>
         </div>
         <div class="daybox"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </div>
     <div class="common">
@@ -500,6 +547,7 @@
       <h2 class="rise">시스템 거절에서<br><span style="color:#A96D2C;">선별 인수로.</span></h2>
       <p class="rise">단, 원인 질환에 따라 갈립니다.<br>이 코드라고 모두 인수되지 않습니다.</p>
     </div>
+    <div class="tap-hint rise"><span class="fin">👆</span> 항목을 눌러 자세히 보기</div>
     <div class="list">
       <div class="item" data-key="pain">
         <div class="txt">
@@ -510,6 +558,7 @@
           </div>
         </div>
         <div class="daybox free"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="item" data-key="dys">
         <div class="txt">
@@ -520,6 +569,7 @@
           </div>
         </div>
         <div class="daybox free"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </div>
     <div class="common">
@@ -545,6 +595,7 @@
       <h2 class="rise">어지럼증·간염도<br><span style="color:#357C5F;">열립니다.</span></h2>
       <p class="rise">현행 <b>인수불가</b> → 세 항목 모두<br><b>수술이 없어야</b> 인수 검토됩니다.</p>
     </div>
+    <div class="tap-hint rise"><span class="fin">👆</span> 항목을 눌러 자세히 보기</div>
     <div class="list">
       <div class="item" data-key="vest">
         <div class="txt">
@@ -552,6 +603,7 @@
           <div class="tags"><span class="tag no">수술 없음</span></div>
         </div>
         <div class="daybox"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="item" data-key="meniere">
         <div class="txt">
@@ -559,6 +611,7 @@
           <div class="tags"><span class="tag no">수술 없음</span></div>
         </div>
         <div class="daybox"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="item" data-key="hepa">
         <div class="txt">
@@ -566,6 +619,7 @@
           <div class="tags"><span class="tag no">수술 없음</span></div>
         </div>
         <div class="daybox"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
+       <div class="chev"><svg width="8" height="13" viewBox="0 0 7 11" fill="none"><path d="M1.5 1L5.5 5.5L1.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </div>
     <div class="common">
@@ -833,7 +887,7 @@ if(q.get('still')) document.body.classList.add('no-anim');
 window.addEventListener('load',()=>{
   const s=parseInt(q.get('s')||'1',10);
   const target=slides[s-1];
-  if(target && s>1) deck.scrollTop = target.offsetTop;   /* innerHeight 계산 대신 실제 위치 */
+  if(target && s>1) target.scrollIntoView({block:'start'});   /* offsetTop보다 안전 */
   slides.forEach(sl=>sl.classList.add('in'));
   const k=q.get('sheet');
   if(k&&DATA[k]) setTimeout(()=>openSheet(k),260);
