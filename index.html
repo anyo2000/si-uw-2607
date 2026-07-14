@@ -506,7 +506,7 @@
           <div class="name">복통</div>
           <div class="tags">
             <span class="tag">수술 무관</span>
-            <span class="tag hot">원인 추가질문</span>
+            <span class="tag hot">원인·동반질환 질문</span>
           </div>
         </div>
         <div class="daybox free"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
@@ -516,7 +516,7 @@
           <div class="name">소화불량</div>
           <div class="tags">
             <span class="tag">수술 무관</span>
-            <span class="tag hot">원인 추가질문</span>
+            <span class="tag hot">원인·동반질환 질문</span>
           </div>
         </div>
         <div class="daybox free"><div class="u1">입원</div><div class="d">15</div><div class="u2">일 이하</div></div>
@@ -525,7 +525,7 @@
     <div class="common">
       <div class="h">현장에서 가장 많이 오해하는 부분입니다</div>
       <div style="font-size:17px;font-weight:700;line-height:1.55;color:#3A4150;text-align:left;padding:2px 4px;">
-        원인이 <b style="color:#12305C;">위염·장염·용종이면 인수 검토</b>,<br>
+        원인이 <b style="color:#12305C;">위염·장염·용종이면 인수 가능</b>,<br>
         <b style="color:#A83E5C;">급성 췌장염이면 거절</b>됩니다.
         <span style="display:block;font-size:15px;font-weight:600;color:#7A7F8A;margin-top:7px;">
           항목을 눌러 원인별 기준을 꼭 확인하세요.
@@ -707,16 +707,16 @@ const DATA = {
     conds:[['입원일수가 15일 이하일 것','원문 : 15일이하 입원'],['수술을 받지 않았을 것','원문 : 수술 無']]
   },
   pain:{
-    name:'복통', day:'15', chips:['수술 무관','원인 추가질문'],
+    name:'복통', day:'15', chips:['수술 무관','원인·동반질환 질문'],
     ba:['인수 불가<br><small style="font-size:13px;font-weight:600;">(시스템 거절)</small>','원인별<br>선별 인수'],
-    verdict:'입원이 <b>15일 이하</b>라면 수술 여부와 관계없이 심사하되, <b>복통의 원인이 무엇이냐</b>에 따라 인수 여부가 갈립니다.',
+    verdict:'입원이 <b>15일 이하</b>라면 수술 여부와 관계없이 심사하되, <b>원인·동반질환이 무엇이냐</b>에 따라 갈립니다.<br><br>동반된 질환이 <b>경증질환이면 인수 가능</b>합니다.',
     branch:true,
     warn:'복통·소화불량 코드로 고지했다고 해서 <b>모든 질환이 경증 인수되는 것은 아닙니다.</b> 반드시 원인을 확인하고 정확히 안내하세요.'
   },
   dys:{
-    name:'소화불량', day:'15', chips:['수술 무관','원인 추가질문'],
+    name:'소화불량', day:'15', chips:['수술 무관','원인·동반질환 질문'],
     ba:['인수 불가<br><small style="font-size:13px;font-weight:600;">(시스템 거절)</small>','원인별<br>선별 인수'],
-    verdict:'입원이 <b>15일 이하</b>라면 수술 여부와 관계없이 심사하되, <b>소화불량의 원인이 무엇이냐</b>에 따라 인수 여부가 갈립니다.',
+    verdict:'입원이 <b>15일 이하</b>라면 수술 여부와 관계없이 심사하되, <b>원인·동반질환이 무엇이냐</b>에 따라 갈립니다.<br><br>동반된 질환이 <b>경증질환이면 인수 가능</b>합니다.',
     branch:true,
     warn:'복통·소화불량 코드로 고지했다고 해서 <b>모든 질환이 경증 인수되는 것은 아닙니다.</b> 반드시 원인을 확인하고 정확히 안내하세요.'
   }
@@ -725,14 +725,14 @@ const DATA = {
 /* 원인별 분기 — 복통·소화불량 공통 */
 const BRANCH = `
   <div class="branch">
-    <div class="h">추가질문에서 밝힌 원인에 따라</div>
+    <div class="h">추가질문 : 원인 / 동반질환 유무</div>
     <div class="br ok">
       <div class="bi">✓</div>
-      <div class="bt">위염 · 장염<span>수술을 받지 않았어야 합니다</span></div>
+      <div class="bt">위염 · 장염<span>수술을 받지 않았어야 합니다 → 경증조건 충족 시 <b>인수 가능</b></span></div>
     </div>
     <div class="br ok">
       <div class="bi">✓</div>
-      <div class="bt">대장용종 · 담낭용종<span>용종제거 수술을 받았어야 합니다</span></div>
+      <div class="bt">대장용종 · 담낭용종<span>용종제거 수술을 받았어야 합니다 → 경증조건 충족 시 <b>인수 가능</b></span></div>
     </div>
     <div class="br">
       <div class="bi">?</div>
@@ -740,7 +740,7 @@ const BRANCH = `
     </div>
     <div class="br no">
       <div class="bi">✕</div>
-      <div class="bt">급성 췌장염<span>현재 인수불가 질환 → 거절로 심사됩니다</span></div>
+      <div class="bt">급성 췌장염<span><b>추가질문의 '그 외 질환' 항목에 "췌장염"으로 반드시 기재</b>해야 합니다.<br>췌장염은 현재 인수불가 질환이라 <b>거절</b>로 심사됩니다.</span></div>
     </div>
   </div>`;
 
